@@ -9,7 +9,7 @@ class Location extends Model
 {
     use HasFactory;
 
-    protected $guarded = ['id'];
+    protected $guarded = [''];
 
     public function staffs()
     {

@@ -19,7 +19,7 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $guarded = ['id'];
+    protected $guarded = [''];
 
     /**
      * The attributes that should be hidden for arrays.
@@ -102,7 +102,7 @@ class User extends Authenticatable
 
     public function groups()
     {
-        return $this->belongsToMany(Group::class, 'group_user');
+        return $this->morphToMany(Group::class, 'groupable');
     }
 
     public function attachTo(Group $group)

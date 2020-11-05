@@ -1,0 +1,40 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+class CreateModulesTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('modules', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->string('label')->unique();
+            $table->string('icon')->nullable();
+            $table->string('resource_file_path')->nullable();
+            $table->string('document_file_path')->nullable();
+            $table->bigInteger('parent_id')->default(0);
+            $table->enum('type', ['module', 'component', 'page'])->default('module');
+            $table->boolean('isDeactivated')->default(false);
+            $table->boolean('generate_permissions')->default(false);
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('modules');
+    }
+}
